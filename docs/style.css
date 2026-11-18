@@ -291,6 +291,7 @@ details.charte li { margin: 4px 0; }
   text-align: center;
 }
 .slot small { display: block; font-weight: 500; color: var(--ink-soft); font-size: 12px; }
+.slot[disabled] { background: #eceff5; color: var(--ink-soft); cursor: not-allowed; }
 .slot[aria-pressed="true"], .place[aria-pressed="true"] { border-color: var(--ink); background: var(--jaune); box-shadow: 0 3px 0 var(--ink); }
 .places { display: grid; gap: 8px; }
 .place { text-align: left; display: flex; align-items: center; gap: 10px; }

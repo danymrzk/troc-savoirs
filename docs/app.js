@@ -98,6 +98,14 @@
   const available = () => state.credits - pending();
   const plural = (n, w) => n + " " + w + (Math.abs(n) > 1 ? "s" : "");
 
+  const busySlots = () => state.exchanges.filter((e) => !["termine", "annule"].includes(e.status)).map((e) => e.slot);
+
+  // Change de page même si l'adresse est déjà la bonne (sinon « hashchange » ne se déclenche pas)
+  function navigate(hash) {
+    if (location.hash === hash) route();
+    else location.hash = hash;
+  }
+
   let toastTimer;
   function toast(msg) {
     const t = $("#toast");
@@ -274,7 +282,10 @@
 
       <h2 class="section-title">Choisis un créneau</h2>
       <div class="slots">
-        ${SLOTS.map((sl) => `<button class="slot" data-slot="${sl.id}" aria-pressed="false">${sl.jour}<small>${sl.heure}</small></button>`).join("")}
+        ${SLOTS.map((sl) => {
+          const busy = busySlots().includes(sl.id);
+          return `<button class="slot" data-slot="${sl.id}" aria-pressed="false"${busy ? " disabled" : ""}>${sl.jour}<small>${busy ? "Déjà un échange" : sl.heure}</small></button>`;
+        }).join("")}
       </div>
 
       <h2 class="section-title">Où ?</h2>
@@ -299,6 +310,9 @@
       if (available() <= 0) {
         btn.disabled = true;
         hint.textContent = "Plus de crédit disponible : donne 1 h d'aide pour en gagner un !";
+      } else if (SLOTS.every((sl) => busySlots().includes(sl.id))) {
+        btn.disabled = true;
+        hint.textContent = "Tu as déjà un échange sur chaque créneau de la semaine.";
       } else {
         btn.disabled = !ready;
         hint.textContent = ready ? `${slotLabel(booking.slot)} · ${placeLabel(booking.lieu)}` : !booking.slot ? "Choisis un créneau pour continuer." : "Choisis un lieu pour continuer.";
@@ -311,7 +325,7 @@
       state.exchanges.push({ id: "ex-" + Date.now(), role: "learner", otherId: s.id, skill: s.skills[0], slot: booking.slot, lieu: booking.lieu, status: "demande", review: null });
       save();
       toast(`Demande envoyée à ${s.prenom} ✉️`);
-      location.hash = "#echanges";
+      navigate("#echanges");
     });
     $("#report").addEventListener("click", () => toast("Merci, la modération va vérifier ce profil."));
     refresh();
@@ -449,11 +463,11 @@
     $("#propose").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const v = ev.target.skill.value.trim();
-      if (!v) return;
+      if (!v) { toast("Écris la compétence que tu veux proposer"); return; }
       if (!state.sais.some((x) => norm(x) === norm(v))) state.sais.push(v.slice(0, 30));
       save();
       toast(`« ${v} » ajouté à ton profil ✨`);
-      location.hash = "#profil";
+      navigate("#profil");
     });
   }
 
@@ -500,12 +514,12 @@
   }
   function bindProfil() {
     $("#attest").addEventListener("click", () => toast("L'attestation PDF arrive dans une prochaine version 📄"));
-    $("#reset").addEventListener("click", () => { state = freshState(); save(); filter = { q: "", cats: [] }; location.hash = "#accueil"; });
+    $("#reset").addEventListener("click", () => { state = freshState(); save(); filter = { q: "", cats: [] }; navigate("#accueil"); });
     $("#delete").addEventListener("click", () => {
       if (confirm("Supprimer ton compte et toutes tes données ? (démo : rien n'est envoyé, tout est effacé de ce navigateur)")) {
         try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
         state = freshState();
-        location.hash = "#accueil";
+        navigate("#accueil");
         toast("Compte supprimé.");
       }
     });
@@ -518,7 +532,7 @@
       if (!f.ok.checked) { toast("Accepte la charte pour continuer"); return; }
       state.prenom = (f.prenom.value.trim() || "Alex").slice(0, 20);
       save();
-      location.hash = "#explorer";
+      navigate("#explorer");
     });
   }
 
