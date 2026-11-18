@@ -7,12 +7,12 @@
   const COLORS = ["jaune", "rose", "bleu", "vert", "orange", "lilas"];
 
   const STUDENTS = [
-    { id: "lea", prenom: "Léa", nom: "Martin", filiere: "L2 Mathématiques", couleur: "jaune", lieu: "BU Sciences", cats: ["Maths", "Logiciels"], skills: ["Algèbre linéaire", "Python"], note: 4.9, avis: 12,
+    { id: "lea", prenom: "Léa", nom: "Moreau", filiere: "L2 Mathématiques", couleur: "jaune", lieu: "BU Sciences", cats: ["Maths", "Logiciels"], skills: ["Algèbre linéaire", "Python"], note: 4.9, avis: 12,
       propose: "Je t'explique les matrices et les espaces vectoriels avec des exos corrigés. On peut aussi débuguer ton code Python ensemble." },
     { id: "yanis", prenom: "Yanis", nom: "Benali", filiere: "LEA Anglais-Espagnol", couleur: "rose", lieu: "BU Lettres", cats: ["Langues"], skills: ["Anglais oral", "Espagnol"], note: 4.8, avis: 9,
       propose: "On parle anglais ou espagnol pendant une heure, sans stress. Parfait pour préparer un oral ou un séjour Erasmus." },
-    { id: "ines", prenom: "Inès", nom: "Kaci", filiere: "BUT MMI", couleur: "bleu", lieu: "En visio", cats: ["Logiciels"], skills: ["Figma", "Photoshop"], note: 5.0, avis: 7,
-      propose: "Je te montre les bases de Figma pour faire une maquette propre, ou comment détourer et retoucher sur Photoshop." },
+    { id: "ines", prenom: "Inès", nom: "Martin", filiere: "BUT 1 Génie civil", couleur: "bleu", lieu: "BU Brabois Santé", cats: ["Logiciels"], skills: ["Revit", "Dessin technique"], note: 5.0, avis: 7,
+      propose: "Je te montre Revit pas à pas : modéliser un bâtiment, sortir des plans et des coupes propres. Parfait si tu débutes pour un projet." },
     { id: "thomas", prenom: "Thomas", nom: "Roussel", filiere: "Licence Musicologie", couleur: "vert", lieu: "BU Lettres", cats: ["Musique"], skills: ["Guitare", "Solfège"], note: 4.7, avis: 15,
       propose: "Premiers accords, rythmiques ou lecture de partition : j'adapte selon ton niveau. Apporte ta guitare si tu en as une !" },
     { id: "camille", prenom: "Camille", nom: "Durand", filiere: "Licence STAPS", couleur: "orange", lieu: "Campus Brabois", cats: ["Sport"], skills: ["Course à pied", "Prépa physique"], note: 4.9, avis: 11,
