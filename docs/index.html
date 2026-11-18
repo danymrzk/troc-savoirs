@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Troc'Savoirs – site témoin</title>
+  <meta name="description" content="Troc'Savoirs : le troc de compétences entre étudiants de l'Université de Lorraine. Donne ce que tu sais, reçois ce qu'il te manque.">
+  <meta name="theme-color" content="#2E4036">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Caveat:wght@500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="demo-strip">Site témoin · données fictives</div>
+    <header class="topbar" id="topbar"></header>
+    <main id="view" tabindex="-1"></main>
+    <nav class="bottomnav" id="bottomnav" aria-label="Navigation principale">
+      <a href="#explorer" data-tab="explorer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span>Explorer</span></a>
+      <a href="#echanges" data-tab="echanges"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span>Échanges</span></a>
+      <a href="#proposer" data-tab="proposer" class="plus" aria-label="Proposer une compétence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></a>
+      <a href="#badges" data-tab="badges"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg><span>Badges</span></a>
+      <a href="#profil" data-tab="profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span>Profil</span></a>
+    </nav>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
